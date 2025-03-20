@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: hotel_app
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/hotel_app
+    username: root
+    password: Rathod@9586
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+jwt:
+  secret: skh873djdb827ydnuh82823yhddhi928e7238eyhkaud9283962387gddbujedw7kd283y34h2
+  expiration: 86400000
