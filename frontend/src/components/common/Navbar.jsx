@@ -19,7 +19,7 @@ function Navbar() {
     return (
         <nav className="navbar">
             <div className="navbar-brand">
-                <NavLink to="/home">Hotel DVine</NavLink>
+                <NavLink to="/home">Hotel Silver9</NavLink>
             </div>
             <ul className="navbar-ul">
                 <li><NavLink to="/home" activeclassname="active">Home</NavLink></li>
