@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const NewHome = () => {
   return (
@@ -6,14 +6,34 @@ const NewHome = () => {
       {/* Navbar */}
       <nav style={styles.navbar}>
         <div style={styles.logo}>
-          <h2>Phegon Hotels</h2>
+          <h2>Hotel Silver9</h2>
         </div>
         <ul style={styles.navLinks}>
-          <li><a href="#" style={styles.navLink}>Home</a></li>
-          <li><a href="#" style={styles.navLink}>Hotels</a></li>
-          <li><a href="#" style={styles.navLink}>Bookings</a></li>
-          <li><a href="#" style={styles.navLink}>Profile</a></li>
-          <li><a href="#" style={styles.navLink}>Admin</a></li>
+          <li>
+            <a href="#" style={styles.navLink}>
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="#" style={styles.navLink}>
+              Hotels
+            </a>
+          </li>
+          <li>
+            <a href="#" style={styles.navLink}>
+              Bookings
+            </a>
+          </li>
+          <li>
+            <a href="#" style={styles.navLink}>
+              Profile
+            </a>
+          </li>
+          <li>
+            <a href="#" style={styles.navLink}>
+              Admin
+            </a>
+          </li>
         </ul>
         <div style={styles.userActions}>
           <button style={styles.loginBtn}>Login</button>
@@ -26,12 +46,23 @@ const NewHome = () => {
         {/* Hero Section */}
         <section style={styles.hero}>
           <h1 style={styles.heroTitle}>Find Your Perfect Stay</h1>
-          <p style={styles.heroSubtitle}>Book hotels with ease and manage your stays effortlessly.</p>
+          <p style={styles.heroSubtitle}>
+            Book hotels with ease and manage your stays effortlessly.
+          </p>
           <div style={styles.searchBar}>
-            <input type="text" placeholder="Destination" style={styles.searchInput} />
+            <input
+              type="text"
+              placeholder="Destination"
+              style={styles.searchInput}
+            />
             <input type="date" style={styles.searchInput} />
             <input type="date" style={styles.searchInput} />
-            <input type="number" placeholder="Guests" min="1" style={styles.searchInput} />
+            <input
+              type="number"
+              placeholder="Guests"
+              min="1"
+              style={styles.searchInput}
+            />
             <button style={styles.searchBtn}>Search</button>
           </div>
         </section>
@@ -42,7 +73,13 @@ const NewHome = () => {
           <div style={styles.filterOptions}>
             <div style={styles.filterGroup}>
               <label style={styles.filterLabel}>Price Range</label>
-              <input type="range" min="50" max="500" defaultValue="200" style={styles.slider} />
+              <input
+                type="range"
+                min="50"
+                max="500"
+                defaultValue="200"
+                style={styles.slider}
+              />
               <span>$50 - $500</span>
             </div>
             <div style={styles.filterGroup}>
@@ -57,9 +94,15 @@ const NewHome = () => {
             <div style={styles.filterGroup}>
               <label style={styles.filterLabel}>Amenities</label>
               <div style={styles.checkboxGroup}>
-                <label><input type="checkbox" /> Wi-Fi</label>
-                <label><input type="checkbox" /> Pool</label>
-                <label><input type="checkbox" /> Parking</label>
+                <label>
+                  <input type="checkbox" /> Wi-Fi
+                </label>
+                <label>
+                  <input type="checkbox" /> Pool
+                </label>
+                <label>
+                  <input type="checkbox" /> Parking
+                </label>
               </div>
             </div>
             <button style={styles.applyFilterBtn}>Apply Filters</button>
@@ -128,25 +171,38 @@ const NewHome = () => {
           <div style={styles.footerSection}>
             <h4>About Us</h4>
             <p>
-              Phegon Hotels offers a seamless booking experience for travelers worldwide.
+              Phegon Hotels offers a seamless booking experience for travelers
+              worldwide.
             </p>
           </div>
           <div style={styles.footerSection}>
             <h4>Quick Links</h4>
             <ul style={styles.footerLinks}>
-              <li><a href="#" style={styles.footerLink}>Terms of Service</a></li>
-              <li><a href="#" style={styles.footerLink}>Privacy Policy</a></li>
-              <li><a href="#" style={styles.footerLink}>Contact Us</a></li>
+              <li>
+                <a href="#" style={styles.footerLink}>
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <a href="#" style={styles.footerLink}>
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="#" style={styles.footerLink}>
+                  Contact Us
+                </a>
+              </li>
             </ul>
           </div>
           <div style={styles.footerSection}>
             <h4>Contact</h4>
-            <p>Email: support@phegonhotels.com</p>
+            <p>Email: support@hotelsilver9.com</p>
             <p>Phone: +1 (555) 123-4567</p>
           </div>
         </div>
         <div style={styles.footerBottom}>
-          <p>&copy; 2025 Phegon Hotels. All rights reserved.</p>
+          <p>&copy; 2025 Hotel Silver9. All rights reserved.</p>
         </div>
       </footer>
     </div>
@@ -156,252 +212,252 @@ const NewHome = () => {
 // Styles object (inline CSS)
 const styles = {
   pageContainer: {
-    fontFamily: 'Arial, sans-serif',
+    fontFamily: "Arial, sans-serif",
     margin: 0,
     padding: 0,
-    minHeight: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
   },
   // Navbar Styles
   navbar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#2c3e50',
-    padding: '1rem 2rem',
-    color: '#fff',
-    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#2c3e50",
+    padding: "1rem 2rem",
+    color: "#fff",
+    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
   },
   logo: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
+    fontSize: "1.5rem",
+    fontWeight: "bold",
   },
   navLinks: {
-    listStyle: 'none',
-    display: 'flex',
-    gap: '2rem',
+    listStyle: "none",
+    display: "flex",
+    gap: "2rem",
     margin: 0,
     padding: 0,
   },
   navLink: {
-    color: '#fff',
-    textDecoration: 'none',
-    fontSize: '1.1rem',
-    transition: 'color 0.3s',
+    color: "#fff",
+    textDecoration: "none",
+    fontSize: "1.1rem",
+    transition: "color 0.3s",
   },
   userActions: {
-    display: 'flex',
-    gap: '1rem',
+    display: "flex",
+    gap: "1rem",
   },
   loginBtn: {
-    backgroundColor: 'transparent',
-    border: '1px solid #fff',
-    color: '#fff',
-    padding: '0.5rem 1rem',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s',
+    backgroundColor: "transparent",
+    border: "1px solid #fff",
+    color: "#fff",
+    padding: "0.5rem 1rem",
+    borderRadius: "5px",
+    cursor: "pointer",
+    transition: "background-color 0.3s",
   },
   signupBtn: {
-    backgroundColor: '#3498db',
-    border: 'none',
-    color: '#fff',
-    padding: '0.5rem 1rem',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s',
+    backgroundColor: "#3498db",
+    border: "none",
+    color: "#fff",
+    padding: "0.5rem 1rem",
+    borderRadius: "5px",
+    cursor: "pointer",
+    transition: "background-color 0.3s",
   },
   // Main Body Styles
   main: {
     flex: 1,
-    padding: '2rem',
-    backgroundColor: '#f4f6f9',
+    padding: "2rem",
+    backgroundColor: "#f4f6f9",
   },
   hero: {
-    textAlign: 'center',
-    padding: '3rem 0',
-    backgroundColor: '#ecf0f1',
-    borderRadius: '10px',
-    marginBottom: '2rem',
+    textAlign: "center",
+    padding: "3rem 0",
+    backgroundColor: "#ecf0f1",
+    borderRadius: "10px",
+    marginBottom: "2rem",
   },
   heroTitle: {
-    fontSize: '2.5rem',
-    color: '#2c3e50',
-    marginBottom: '0.5rem',
+    fontSize: "2.5rem",
+    color: "#2c3e50",
+    marginBottom: "0.5rem",
   },
   heroSubtitle: {
-    fontSize: '1.2rem',
-    color: '#7f8c8d',
-    marginBottom: '1.5rem',
+    fontSize: "1.2rem",
+    color: "#7f8c8d",
+    marginBottom: "1.5rem",
   },
   searchBar: {
-    display: 'flex',
-    gap: '1rem',
-    justifyContent: 'center',
-    maxWidth: '800px',
-    margin: '0 auto',
+    display: "flex",
+    gap: "1rem",
+    justifyContent: "center",
+    maxWidth: "800px",
+    margin: "0 auto",
   },
   searchInput: {
-    padding: '0.75rem',
-    borderRadius: '5px',
-    border: '1px solid #ddd',
-    fontSize: '1rem',
-    width: '150px',
+    padding: "0.75rem",
+    borderRadius: "5px",
+    border: "1px solid #ddd",
+    fontSize: "1rem",
+    width: "150px",
   },
   searchBtn: {
-    backgroundColor: '#e74c3c',
-    color: '#fff',
-    padding: '0.75rem 1.5rem',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s',
+    backgroundColor: "#e74c3c",
+    color: "#fff",
+    padding: "0.75rem 1.5rem",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    transition: "background-color 0.3s",
   },
   filters: {
-    backgroundColor: '#fff',
-    padding: '1.5rem',
-    borderRadius: '10px',
-    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
-    marginBottom: '2rem',
+    backgroundColor: "#fff",
+    padding: "1.5rem",
+    borderRadius: "10px",
+    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+    marginBottom: "2rem",
   },
   sectionTitle: {
-    fontSize: '1.5rem',
-    color: '#2c3e50',
-    marginBottom: '1rem',
+    fontSize: "1.5rem",
+    color: "#2c3e50",
+    marginBottom: "1rem",
   },
   filterOptions: {
-    display: 'flex',
-    gap: '2rem',
-    flexWrap: 'wrap',
+    display: "flex",
+    gap: "2rem",
+    flexWrap: "wrap",
   },
   filterGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0.5rem',
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.5rem",
   },
   filterLabel: {
-    fontWeight: 'bold',
-    color: '#34495e',
+    fontWeight: "bold",
+    color: "#34495e",
   },
   slider: {
-    width: '150px',
+    width: "150px",
   },
   select: {
-    padding: '0.5rem',
-    borderRadius: '5px',
-    border: '1px solid #ddd',
+    padding: "0.5rem",
+    borderRadius: "5px",
+    border: "1px solid #ddd",
   },
   checkboxGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0.5rem',
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.5rem",
   },
   applyFilterBtn: {
-    backgroundColor: '#3498db',
-    color: '#fff',
-    padding: '0.75rem 1.5rem',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    alignSelf: 'flex-end',
+    backgroundColor: "#3498db",
+    color: "#fff",
+    padding: "0.75rem 1.5rem",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    alignSelf: "flex-end",
   },
   listings: {
-    backgroundColor: '#fff',
-    padding: '1.5rem',
-    borderRadius: '10px',
-    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+    backgroundColor: "#fff",
+    padding: "1.5rem",
+    borderRadius: "10px",
+    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
   },
   hotelGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gap: '2rem',
-    marginBottom: '2rem',
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: "2rem",
+    marginBottom: "2rem",
   },
   hotelCard: {
-    border: '1px solid #ddd',
-    borderRadius: '10px',
-    overflow: 'hidden',
-    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.05)',
-    transition: 'transform 0.3s',
+    border: "1px solid #ddd",
+    borderRadius: "10px",
+    overflow: "hidden",
+    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.05)",
+    transition: "transform 0.3s",
   },
   hotelImage: {
-    width: '100%',
-    height: '200px',
-    objectFit: 'cover',
+    width: "100%",
+    height: "200px",
+    objectFit: "cover",
   },
   hotelInfo: {
-    padding: '1rem',
+    padding: "1rem",
   },
   hotelName: {
-    fontSize: '1.25rem',
-    color: '#2c3e50',
-    margin: '0 0 0.5rem',
+    fontSize: "1.25rem",
+    color: "#2c3e50",
+    margin: "0 0 0.5rem",
   },
   hotelLocation: {
-    fontSize: '1rem',
-    color: '#7f8c8d',
-    margin: '0 0 0.5rem',
+    fontSize: "1rem",
+    color: "#7f8c8d",
+    margin: "0 0 0.5rem",
   },
   hotelRating: {
-    fontSize: '1rem',
-    color: '#f1c40f',
-    margin: '0 0 0.5rem',
+    fontSize: "1rem",
+    color: "#f1c40f",
+    margin: "0 0 0.5rem",
   },
   hotelPrice: {
-    fontSize: '1.1rem',
-    fontWeight: 'bold',
-    color: '#e74c3c',
-    margin: '0 0 1rem',
+    fontSize: "1.1rem",
+    fontWeight: "bold",
+    color: "#e74c3c",
+    margin: "0 0 1rem",
   },
   bookBtn: {
-    backgroundColor: '#e74c3c',
-    color: '#fff',
-    padding: '0.5rem 1rem',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    width: '100%',
+    backgroundColor: "#e74c3c",
+    color: "#fff",
+    padding: "0.5rem 1rem",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    width: "100%",
   },
   loadMoreBtn: {
-    display: 'block',
-    margin: '0 auto',
-    backgroundColor: '#3498db',
-    color: '#fff',
-    padding: '0.75rem 1.5rem',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
+    display: "block",
+    margin: "0 auto",
+    backgroundColor: "#3498db",
+    color: "#fff",
+    padding: "0.75rem 1.5rem",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
   },
   // Footer Styles
   footer: {
-    backgroundColor: '#2c3e50',
-    color: '#fff',
-    padding: '2rem',
-    textAlign: 'center',
+    backgroundColor: "#2c3e50",
+    color: "#fff",
+    padding: "2rem",
+    textAlign: "center",
   },
   footerContent: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    flexWrap: 'wrap',
-    marginBottom: '1rem',
+    display: "flex",
+    justifyContent: "space-around",
+    flexWrap: "wrap",
+    marginBottom: "1rem",
   },
   footerSection: {
-    flex: '1 1 200px',
-    margin: '1rem',
+    flex: "1 1 200px",
+    margin: "1rem",
   },
   footerLinks: {
-    listStyle: 'none',
+    listStyle: "none",
     padding: 0,
   },
   footerLink: {
-    color: '#bdc3c7',
-    textDecoration: 'none',
-    fontSize: '0.9rem',
+    color: "#bdc3c7",
+    textDecoration: "none",
+    fontSize: "0.9rem",
   },
   footerBottom: {
-    borderTop: '1px solid #34495e',
-    paddingTop: '1rem',
+    borderTop: "1px solid #34495e",
+    paddingTop: "1rem",
   },
 };
 
