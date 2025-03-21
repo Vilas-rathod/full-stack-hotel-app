@@ -8,7 +8,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: Rathod@9586
       MYSQL_DATABASE: hotel_app
-      MYSQL_USER: root
       MYSQL_PASSWORD: Rathod@9586
     ports:
       - "3306:3306"
