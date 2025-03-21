@@ -22,7 +22,7 @@ services:
     depends_on:
       - mysql_db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/hotel_app
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/hotel_app
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: Rathod@9586
     ports:
