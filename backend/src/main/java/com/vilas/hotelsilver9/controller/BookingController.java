@@ -4,7 +4,6 @@ package com.vilas.hotelsilver9.controller;
 import com.vilas.hotelsilver9.dto.Response;
 import com.vilas.hotelsilver9.entity.Booking;
 import com.vilas.hotelsilver9.service.interfac.IBookingService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 public class BookingController {
 
-    @Autowired
-    private IBookingService bookingService;
+
+    private final IBookingService bookingService;
+
+    BookingController(IBookingService bookingService){
+        this.bookingService=bookingService;
+    }
 
     @PostMapping("/book-room/{roomId}/{userId}")
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")

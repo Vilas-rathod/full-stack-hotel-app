@@ -18,6 +18,8 @@ function Navbar() {
     }
   };
 
+  const navLinkClass = ({ isActive }) => (isActive ? "active" : undefined);
+
   return (
     <nav className="navbar">
       <div className="navbar-brand">
@@ -25,31 +27,31 @@ function Navbar() {
       </div>
       <ul className="navbar-ul">
         <li>
-          <NavLink to="/home" activeclassname="active">
+          <NavLink to="/home" className={navLinkClass}>
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to="/rooms" activeclassname="active">
+          <NavLink to="/rooms" className={navLinkClass}>
             Rooms
           </NavLink>
         </li>
         <li>
-          <NavLink to="/find-booking" activeclassname="active">
+          <NavLink to="/find-booking" className={navLinkClass}>
             Find my Booking
           </NavLink>
         </li>
 
         {isUser && (
           <li>
-            <NavLink to="/profile" activeclassname="active">
+            <NavLink to="/profile" className={navLinkClass}>
               Profile
             </NavLink>
           </li>
         )}
         {isAdmin && (
           <li>
-            <NavLink to="/admin" activeclassname="active">
+            <NavLink to="/admin" className={navLinkClass}>
               Admin
             </NavLink>
           </li>
@@ -57,19 +59,25 @@ function Navbar() {
 
         {!isAuthenticated && (
           <li>
-            <NavLink to="/login" activeclassname="active">
+            <NavLink to="/login" className={navLinkClass}>
               Login
             </NavLink>
           </li>
         )}
         {!isAuthenticated && (
           <li>
-            <NavLink to="/register" activeclassname="active">
+            <NavLink to="/register" className={navLinkClass}>
               Register
             </NavLink>
           </li>
         )}
-        {isAuthenticated && <li onClick={handleLogout}>Logout</li>}
+        {isAuthenticated && (
+          <li>
+            <button className="logout-button" onClick={handleLogout}>
+              Logout
+            </button>
+          </li>
+        )}
       </ul>
     </nav>
   );

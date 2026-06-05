@@ -4,7 +4,7 @@ package com.vilas.hotelsilver9.controller;
 import com.vilas.hotelsilver9.dto.Response;
 import com.vilas.hotelsilver9.service.interfac.IBookingService;
 import com.vilas.hotelsilver9.service.interfac.IRoomService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,12 +17,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rooms")
+@RequiredArgsConstructor
 public class RoomController {
 
-    @Autowired
-    private IRoomService roomService;
-    @Autowired
-    private IBookingService iBookingService;
+
+    private final IRoomService roomService;
+    private final IBookingService iBookingService;
+
+
 
 
     @PostMapping("/add")

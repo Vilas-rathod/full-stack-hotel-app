@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import ApiService from '../../service/ApiService';
-import DatePicker from 'react-datepicker';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import ApiService from "../../service/ApiService";
+import DatePicker from "react-datepicker";
 // import 'react-datepicker/dist/react-datepicker.css';
 
 const RoomDetailsPage = () => {
@@ -10,7 +10,7 @@ const RoomDetailsPage = () => {
 
   // State Management
   const [roomDetails, setRoomDetails] = useState(null);
-  const [userId, setUserId] = useState('');
+  const [userId, setUserId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [checkInDate, setCheckInDate] = useState(null);
@@ -20,9 +20,9 @@ const RoomDetailsPage = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalGuests, setTotalGuests] = useState(0);
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [confirmationCode, setConfirmationCode] = useState('');
+  const [confirmationCode, setConfirmationCode] = useState("");
   const [showMessage, setShowMessage] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   // Fetch room details and user profile on mount
   useEffect(() => {
@@ -47,13 +47,20 @@ const RoomDetailsPage = () => {
   // Calculate booking details
   const calculateBooking = () => {
     if (!checkInDate || !checkOutDate) {
-      setErrorMessage('Please select both check-in and check-out dates.');
+      setErrorMessage("Please select both check-in and check-out dates.");
       clearErrorAfterDelay();
       return false;
     }
 
-    if (isNaN(numAdults) || numAdults < 1 || isNaN(numChildren) || numChildren < 0) {
-      setErrorMessage('Please enter valid numbers for adults (min 1) and children (min 0).');
+    if (
+      isNaN(numAdults) ||
+      numAdults < 1 ||
+      isNaN(numChildren) ||
+      numChildren < 0
+    ) {
+      setErrorMessage(
+        "Please enter valid numbers for adults (min 1) and children (min 0).",
+      );
       clearErrorAfterDelay();
       return false;
     }
@@ -80,7 +87,7 @@ const RoomDetailsPage = () => {
   // Submit booking to API
   const acceptBooking = async () => {
     if (!totalPrice) {
-      setErrorMessage('Please confirm booking details first.');
+      setErrorMessage("Please confirm booking details first.");
       clearErrorAfterDelay();
       return;
     }
@@ -88,8 +95,8 @@ const RoomDetailsPage = () => {
     try {
       const startDate = new Date(checkInDate);
       const endDate = new Date(checkOutDate);
-      const formattedCheckInDate = startDate.toISOString().split('T')[0];
-      const formattedCheckOutDate = endDate.toISOString().split('T')[0];
+      const formattedCheckInDate = startDate.toISOString().split("T")[0];
+      const formattedCheckOutDate = endDate.toISOString().split("T")[0];
 
       const booking = {
         checkInDate: formattedCheckInDate,
@@ -98,7 +105,7 @@ const RoomDetailsPage = () => {
         numOfChildren: numChildren,
       };
 
-      console.log('Booking payload:', booking);
+      console.log("Booking payload:", booking);
 
       const response = await ApiService.bookRoom(roomId, userId, booking);
       if (response.statusCode === 200) {
@@ -106,7 +113,7 @@ const RoomDetailsPage = () => {
         setShowMessage(true);
         setTimeout(() => {
           setShowMessage(false);
-          navigate('/rooms');
+          navigate("/rooms");
         }, 10000); // 10s delay for success message
       }
     } catch (error) {
@@ -117,27 +124,31 @@ const RoomDetailsPage = () => {
 
   // Utility to clear error message after 5 seconds
   const clearErrorAfterDelay = () => {
-    setTimeout(() => setErrorMessage(''), 5000);
+    setTimeout(() => setErrorMessage(""), 5000);
   };
 
   // Loading state
-  if (isLoading) return <p className="room-detail-loading">Loading room details...</p>;
+  if (isLoading)
+    return <p className="room-detail-loading">Loading room details...</p>;
 
   // Error state
   if (error) return <p className="room-detail-loading">{error}</p>;
 
   // No room found state
-  if (!roomDetails) return <p className="room-detail-loading">Room not found.</p>;
+  if (!roomDetails)
+    return <p className="room-detail-loading">Room not found.</p>;
 
-  const { roomType, roomPrice, roomPhotoUrl, description, bookings } = roomDetails;
+  const { roomType, roomPrice, roomPhotoUrl, description, bookings } =
+    roomDetails;
 
   return (
     <div className="room-details-booking">
       {/* Success Message */}
       {showMessage && (
         <p className="booking-success-message">
-          Booking successful! Confirmation code: <strong>{confirmationCode}</strong>. 
-          An SMS and email of your booking details have been sent to you.
+          Booking successful! Confirmation code:{" "}
+          <strong>{confirmationCode}</strong>. An SMS and email of your booking
+          details have been sent to you.
         </p>
       )}
 
@@ -149,7 +160,14 @@ const RoomDetailsPage = () => {
       <img src={roomPhotoUrl} alt={roomType} className="room-details-image" />
       <div className="room-details-info">
         <h3>{roomType}</h3>
-        <p>Price: ${roomPrice} / night</p>
+        <p>
+          Price:{" "}
+          {new Intl.NumberFormat("en-IN", {
+            style: "currency",
+            currency: "INR",
+          }).format(roomPrice)}{" "}
+          / night
+        </p>{" "}
         <p>{description}</p>
       </div>
 
@@ -161,8 +179,12 @@ const RoomDetailsPage = () => {
             {bookings.map((booking, index) => (
               <li key={booking.id} className="booking-item">
                 <span className="booking-number">Booking {index + 1}: </span>
-                <span className="booking-text">Check-in: {booking.checkInDate} </span>
-                <span className="booking-text">Check-out: {booking.checkOutDate}</span>
+                <span className="booking-text">
+                  Check-in: {booking.checkInDate}{" "}
+                </span>
+                <span className="booking-text">
+                  Check-out: {booking.checkOutDate}
+                </span>
               </li>
             ))}
           </ul>
@@ -175,7 +197,7 @@ const RoomDetailsPage = () => {
           className="book-now-button"
           onClick={() => setShowDatePicker(!showDatePicker)}
         >
-          {showDatePicker ? 'Hide Booking Form' : 'Book Now'}
+          {showDatePicker ? "Hide Booking Form" : "Book Now"}
         </button>
 
         {showDatePicker && (
@@ -212,7 +234,9 @@ const RoomDetailsPage = () => {
                   type="number"
                   min="1"
                   value={numAdults}
-                  onChange={(e) => setNumAdults(Math.max(1, parseInt(e.target.value) || 1))}
+                  onChange={(e) =>
+                    setNumAdults(Math.max(1, parseInt(e.target.value) || 1))
+                  }
                 />
               </div>
               <div className="guest-div">
@@ -221,10 +245,15 @@ const RoomDetailsPage = () => {
                   type="number"
                   min="0"
                   value={numChildren}
-                  onChange={(e) => setNumChildren(Math.max(0, parseInt(e.target.value) || 0))}
+                  onChange={(e) =>
+                    setNumChildren(Math.max(0, parseInt(e.target.value) || 0))
+                  }
                 />
               </div>
-              <button className="confirm-booking" onClick={handleConfirmBooking}>
+              <button
+                className="confirm-booking"
+                onClick={handleConfirmBooking}
+              >
                 Confirm Booking
               </button>
             </div>

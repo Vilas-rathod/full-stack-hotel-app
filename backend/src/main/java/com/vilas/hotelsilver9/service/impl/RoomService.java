@@ -6,7 +6,8 @@ import com.vilas.hotelsilver9.entity.Room;
 import com.vilas.hotelsilver9.exception.OurException;
 import com.vilas.hotelsilver9.repo.BookingRepository;
 import com.vilas.hotelsilver9.repo.RoomRepository;
-import com.vilas.hotelsilver9.service.DummyAwsS3Service;
+//import com.vilas.hotelsilver9.service.DummyAwsS3Service;
+import com.vilas.hotelsilver9.service.CloudinaryService;
 import com.vilas.hotelsilver9.service.interfac.IRoomService;
 import com.vilas.hotelsilver9.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +28,15 @@ public class RoomService implements IRoomService {
     @Autowired
     private BookingRepository bookingRepository;
     @Autowired
-    private DummyAwsS3Service  awsS3Service;
+//    private DummyAwsS3Service  awsS3Service;
+    private CloudinaryService  cloudinaryService;
 
     @Override
     public Response addNewRoom(MultipartFile photo, String roomType, BigDecimal roomPrice, String description) {
         Response response = new Response();
 
         try {
-            String imageUrl = awsS3Service.saveImageToS3(photo);
+            String imageUrl = cloudinaryService.uploadImage(photo);
             Room room = new Room();
             room.setRoomPhotoUrl(imageUrl);
             room.setRoomType(roomType);
@@ -103,7 +105,7 @@ public class RoomService implements IRoomService {
         try {
             String imageUrl = null;
             if (photo != null && !photo.isEmpty()) {
-                imageUrl = awsS3Service.saveImageToS3(photo);
+                imageUrl = cloudinaryService.uploadImage(photo);
             }
             Room room = roomRepository.findById(roomId).orElseThrow(() -> new OurException("Room Not Found"));
             if (roomType != null) room.setRoomType(roomType);
