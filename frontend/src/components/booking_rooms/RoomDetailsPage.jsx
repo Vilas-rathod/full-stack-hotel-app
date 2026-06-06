@@ -17,8 +17,6 @@ const RoomDetailsPage = () => {
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [numAdults, setNumAdults] = useState(1);
   const [numChildren, setNumChildren] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [totalGuests, setTotalGuests] = useState(0);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [confirmationCode, setConfirmationCode] = useState("");
   const [showMessage, setShowMessage] = useState(false);
@@ -65,30 +63,17 @@ const RoomDetailsPage = () => {
       return false;
     }
 
-    const oneDay = 24 * 60 * 60 * 1000;
-    const startDate = new Date(checkInDate);
-    const endDate = new Date(checkOutDate);
-    const totalDays = Math.round(Math.abs((endDate - startDate) / oneDay)) + 1;
-    const totalGuests = numAdults + numChildren;
-    const totalPrice = roomDetails.roomPrice * totalDays;
-
-    setTotalGuests(totalGuests);
-    setTotalPrice(totalPrice);
     return true;
   };
 
   // Handle booking confirmation
-  const handleConfirmBooking = () => {
-    if (calculateBooking()) {
-      setShowDatePicker(false); // Optionally hide date picker after confirmation
-    }
+  const handleConfirmBooking = async () => {
+    await acceptBooking();
   };
 
   // Submit booking to API
   const acceptBooking = async () => {
-    if (!totalPrice) {
-      setErrorMessage("Please confirm booking details first.");
-      clearErrorAfterDelay();
+    if (!calculateBooking()) {
       return;
     }
 
@@ -111,6 +96,7 @@ const RoomDetailsPage = () => {
       if (response.statusCode === 200) {
         setConfirmationCode(response.bookingConfirmationCode);
         setShowMessage(true);
+        setShowDatePicker(false);
         setTimeout(() => {
           setShowMessage(false);
           navigate("/rooms");
@@ -138,7 +124,7 @@ const RoomDetailsPage = () => {
   if (!roomDetails)
     return <p className="room-detail-loading">Room not found.</p>;
 
-  const { roomType, roomPrice, roomPhotoUrl, description, bookings } =
+  const { roomType, roomPrice, roomPhotoUrl, description, roomDescription, bookings } =
     roomDetails;
 
   return (
@@ -168,7 +154,7 @@ const RoomDetailsPage = () => {
           }).format(roomPrice)}{" "}
           / night
         </p>{" "}
-        <p>{description}</p>
+        <p>{description || roomDescription}</p>
       </div>
 
       {/* Existing Bookings */}
@@ -260,16 +246,6 @@ const RoomDetailsPage = () => {
           </div>
         )}
 
-        {/* Booking Summary */}
-        {totalPrice > 0 && (
-          <div className="total-price">
-            <p>Total Price: ${totalPrice}</p>
-            <p>Total Guests: {totalGuests}</p>
-            <button onClick={acceptBooking} className="accept-booking">
-              Accept Booking
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );
