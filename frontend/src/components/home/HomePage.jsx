@@ -1,14 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RoomResult from "../common/RoomResult";
 import RoomSearch from "../common/RoomSearch";
+import { useNavigate } from "react-router-dom";
+import ApiService from "../../service/ApiService";
 
 const HomePage = () => {
   const [roomSearchResults, setRoomSearchResults] = useState([]);
+  const [featuredRooms, setFeaturedRooms] = useState([]);
+  const navigate = useNavigate();
+  const isAdmin = ApiService.isAdmin();
+
+  useEffect(() => {
+    const fetchFeaturedRooms = async () => {
+      try {
+        const response = await ApiService.getAllAvailableRooms();
+        setFeaturedRooms((response.roomList || []).slice(0, 4));
+      } catch (error) {
+        console.error("Error fetching featured rooms:", error.message);
+      }
+    };
+
+    fetchFeaturedRooms();
+  }, []);
 
   // Function to handle search results
   const handleSearchResult = (results) => {
     setRoomSearchResults(results);
   };
+
+  const formatRoomPrice = (price) =>
+    new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+    }).format(price);
 
   return (
     <div className="home">
@@ -35,11 +59,59 @@ const HomePage = () => {
       <RoomSearch handleSearchResult={handleSearchResult} />
       <RoomResult roomSearchResults={roomSearchResults} />
 
-      <h4>
-        <a className="view-rooms-home" href="/rooms">
-          All Rooms
-        </a>
-      </h4>
+      {featuredRooms.length > 0 && (
+        <section className="featured-rooms-section">
+          <div className="section-heading-row">
+            <div>
+              <h2>Featured Stays</h2>
+              <p>
+                Premium rooms selected for comfort, privacy, and easy booking.
+              </p>
+            </div>
+            <a className="view-rooms-home" href="/rooms">
+              View all
+            </a>
+          </div>
+
+          <div className="featured-room-scroll" aria-label="Featured rooms">
+            {featuredRooms.map((room) => (
+              <article key={room.id} className="featured-room-card">
+                <img src={room.roomPhotoUrl} alt={room.roomType} />
+                <div className="featured-room-content">
+                  <span className="featured-room-tag">Hotel Silver9</span>
+                  <h3>{room.roomType}</h3>
+                  <p>{room.roomDescription}</p>
+                  <div className="featured-room-footer">
+                    <strong>{formatRoomPrice(room.roomPrice)}</strong>
+                    <span>/ night</span>
+                    <div className="book-now-div">
+                      {isAdmin ? (
+                        <button
+                          className="edit-room-button"
+                          onClick={() =>
+                            navigate(`/admin/edit-room/${room.id}`)
+                          }
+                        >
+                          Edit Room
+                        </button>
+                      ) : (
+                        <button
+                          className="book-now-button"
+                          onClick={() =>
+                            navigate(`/room-details-book/${room.id}`)
+                          }
+                        >
+                          View/Book Now
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       <h2 className="home-services">
         Services at <span className="phegon-color">Hotel Silver9</span>
@@ -80,7 +152,7 @@ const HomePage = () => {
         <div className="service-card">
           <img src="./assets/images/wifi.png" alt="WiFi" />
           <div className="service-details">
-            <h3 className="service-title">WiFi</h3>a
+            <h3 className="service-title">WiFi</h3>
             <p className="service-description">
               Stay connected throughout your stay with complimentary high-speed
               Wi-Fi access available in all guest rooms and public areas.
